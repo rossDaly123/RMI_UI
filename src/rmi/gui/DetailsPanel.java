@@ -15,7 +15,7 @@ public class DetailsPanel extends JPanel {
    
    public DetailsPanel(){
        Dimension size = getPreferredSize();
-       size.width = 250;
+       size.width = 300;
        setPreferredSize(size);
        
        
@@ -26,9 +26,9 @@ public class DetailsPanel extends JPanel {
        JLabel passwordLabel = new JLabel("Password: ");
        
        final JTextField idField = new JTextField(10);
-       final JTextField passwordField = new JTextField(10);
+       final JPasswordField passwordField = new JPasswordField(10);
        
-       JButton addBtn = new JButton("Add");
+       JButton addBtn = new JButton("Submit");
        
        addBtn.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
@@ -36,7 +36,7 @@ public class DetailsPanel extends JPanel {
                String password = passwordField.getText();
                
                String text = id + ": " + password + "\n";
-               
+               // send password to relivent database and access the users account detials
                fireDetailEvent(new DetailEvent(this, text));
            }
        });
