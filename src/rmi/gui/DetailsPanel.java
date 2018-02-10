@@ -3,6 +3,7 @@ package rmi.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 
@@ -32,13 +33,25 @@ public class DetailsPanel extends JPanel {
        
        addBtn.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
-               String id = idField.getText();
-               String password = passwordField.getText();
-               
-               String text = id + ": " + password + "\n";
-               // send password to relivent database and access the users account detials
-               fireDetailEvent(new DetailEvent(this, text));
+                String id = idField.getText();
+                String password = passwordField.getText();
+
+                String text = id + ": " + password + "\n";
+
+                // send password to relivent database and access the users account detials
+                //function call(complete, notComplete);
+
+                ArrayList<String> assignmentList = new ArrayList<String>(); //test start
+                assignmentList.add("CT402");
+                assignmentList.add("CT412");
+                assignmentList.add("CT410");
+                assignmentList.add("CT420");
+                IndividualAssignments currentUser = new IndividualAssignments(assignmentList);
+                currentUser.IndividualAssignments();  //test end
+                
+                fireDetailEvent(new DetailEvent(this, text));   //remove and replace with an exit of the login jframe
            }
+
        });
        
        setLayout(new GridBagLayout());
