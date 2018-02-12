@@ -40,13 +40,13 @@ public class DetailsPanel extends JPanel {
 
                 // send password to relivent database and access the users account detials
                 //function call(complete, notComplete);
-
+                
                 ArrayList<String> assignmentList = new ArrayList<String>(); //test start
                 assignmentList.add("CT402");
                 assignmentList.add("CT412");
                 assignmentList.add("CT410");
                 assignmentList.add("CT420");
-                IndividualAssignments currentUser = new IndividualAssignments(assignmentList);
+                IndividualAssignments currentUser = new IndividualAssignments(assignmentList, id);
                 currentUser.IndividualAssignments();  //test end
                 
                 fireDetailEvent(new DetailEvent(this, text));   //remove and replace with an exit of the login jframe

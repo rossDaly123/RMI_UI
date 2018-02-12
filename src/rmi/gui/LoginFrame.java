@@ -6,11 +6,11 @@ import javax.swing.*;
  *
  * @author rossdaly
  */
-public class MainFrame extends JFrame {
+public class LoginFrame extends JFrame {
     
     private DetailsPanel detailsPanel;
     
-    public MainFrame(String title){
+    public LoginFrame(String title){
         super(title);
         
         setLayout(new BorderLayout());
