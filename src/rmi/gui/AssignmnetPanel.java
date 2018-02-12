@@ -53,19 +53,47 @@ class AssignmnetPanel extends JPanel {
         JButton assign1Btn = new JButton("Check");
         JButton assign2Btn = new JButton("Check");
         JButton assign3Btn = new JButton("Check");
-        
-//        JButton addBtn = new JButton("Submit");
 
-//        addBtn.addActionListener(new ActionListener(){
-//            public void actionPerformed(ActionEvent e){
-//                 String id = idField.getText();
-//                 String password = passwordField.getText();
-//
-//                 String text = id + ": " + password + "\n";
-//                 // preform action here
-//            }
-//
-//        });
+        assign1Btn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                System.out.println("you pressed 1");
+                //get users questions by passing the user id and assignment number
+                
+                ArrayList<String> questionsList = new ArrayList<String>(); //test start
+                questionsList.add("Where do babys come from?");
+                questionsList.add("What is the meaning of life?");
+                questionsList.add("How long is a peice of string?");
+                Assessment assessment = new Assessment(questionsList);
+                assessment.Assessment();
+                 // preform action here for assignmnet 1
+            }
+        });
+        assign2Btn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                System.out.println("you pressed 2");
+                // preform action here for assignmnet 2
+                 
+                ArrayList<String> questionsList = new ArrayList<String>(); //test start
+                questionsList.add("Where do babys come from?");
+                questionsList.add("What is the meaning of life?");
+                questionsList.add("How long is a peice of string?");
+                Assessment assessment = new Assessment(questionsList);
+                assessment.Assessment();
+            }
+        });
+        assign3Btn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                System.out.println("you pressed 3");
+                // preform action here for assignmnet 3
+                
+                ArrayList<String> questionsList = new ArrayList<String>(); //test start
+                questionsList.add("Where do babys come from?");
+                questionsList.add("What is the meaning of life?");
+                questionsList.add("How long is a peice of string?");
+                Assessment assessment = new Assessment(questionsList);
+                assessment.Assessment();
+            }
+        });
 
         setLayout(new GridBagLayout());
 
@@ -130,14 +158,7 @@ class AssignmnetPanel extends JPanel {
         gc.gridx = 2;
         gc.gridy = 3;
         add(assign3Btn, gc);
-        
-        //// Final Row /////////
-//        gc.weighty = 10;
-//
-//        gc.anchor = GridBagConstraints.FIRST_LINE_START;
-//        gc.gridx = 1;
-//        gc.gridy = 4;
-//        add(addBtn, gc);   
+          
    }
 
 }
