@@ -1,0 +1,3 @@
+grant codeBase "file:~/eclipse-workspace/TestClient/src/" {
+    permission java.security.AllPermission;
+};
