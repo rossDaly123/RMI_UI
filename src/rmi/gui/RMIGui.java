@@ -19,9 +19,6 @@ public class RMIGui {
             }
         });
         
-        //Receive details about the user from this and us it to get that users assignments frame
-        
-
     }
     public void setLoginInvisible(){
         frame.setVisible(false);

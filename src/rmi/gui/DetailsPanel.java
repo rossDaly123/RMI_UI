@@ -37,7 +37,7 @@ public class DetailsPanel extends JPanel {
                 String password = passwordField.getText();
 
                 String text = id + ": " + password + "\n";
-
+                
                 // send password to relivent database and access the users account detials
                 //function call(complete, notComplete);
                 

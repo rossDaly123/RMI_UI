@@ -17,14 +17,9 @@ public class AssessmentFrame extends JFrame {
         
         setLayout(new BorderLayout());
         
-//        final JTextArea textArea = new JTextArea();
-        
         assessmentPanel = new AssessmentPanel();
         
-        //need a listener to check if the submit button has been pressed
-        
         Container container = getContentPane();
-//        container.add(textArea, BorderLayout.CENTER);
         container.add(assessmentPanel, BorderLayout.WEST);
         
     }

@@ -31,38 +31,93 @@ class AssessmentPanel extends JPanel {
 
 
         setBorder(BorderFactory.createTitledBorder("Assessment Number: "));
+        
+        //Remove this test~~~~~~~
+        ArrayList<String> questionsList = new ArrayList<String>(); //test start
+        questionsList.add("Where do babys come from?");
+        questionsList.add("What is the meaning of life?");
+        questionsList.add("How long is a peice of string?");
+        
+        ArrayList<String> answerList = new ArrayList<String>(); //test start
+        answerList.add("Jesus");
+        answerList.add("Mexico");
+        answerList.add("7");
+        answerList.add("All of these");
+        
+        setLayout(new GridBagLayout());
+        GridBagConstraints gc = new GridBagConstraints();
+        gc.weightx = .5;
+        gc.weighty = .5;
+        for(int i=0; i < questionsList.size(); i++){
+            JLabel ques1 = new JLabel(questionsList.get(i));
+            gc.gridx = 0;
+            gc.gridy = i+1;
+            add(ques1, gc);
+            
+            ButtonGroup group2 = new ButtonGroup();     //create radio group for this question
+            gc.anchor = GridBagConstraints.LINE_START;
+            
+            gc.gridy = i+1;
+            for(int j=0; j< answerList.size(); j++){
+                gc.gridx = j+1;
+                JRadioButton radioBtn = new JRadioButton(answerList.get(j));
+                add(radioBtn, gc);
+                
+                //add radio button to group
+                group2.add(radioBtn);
+            }
+            
 
-        JLabel ques1 = new JLabel("Question 1~~~~~");   //pass in the string 1 from the array
-        JLabel ques2 = new JLabel("Question 2~~~~~");
-        JLabel ques3 = new JLabel("Question 3~~~~~");
+        }
+        
+        
+//        JLabel ques1 = new JLabel(questionsList.get(0));   //pass in the string 1 from the array
+//        JLabel ques2 = new JLabel(questionsList.get(1));
+//        JLabel ques3 = new JLabel(questionsList.get(2));
 //        headingCol1.setFont(new Font("Serif", Font.BOLD, 20));
 
-        JLabel trueLabel = new JLabel("True");
-        trueLabel.setFont(new Font("Serif", Font.BOLD, 16));
-        JLabel falseLabel = new JLabel("False");
-        falseLabel.setFont(new Font("Serif", Font.BOLD, 16));
+//        JLabel answerLabelA = new JLabel("A");
+//        answerLabelA.setFont(new Font("Serif", Font.BOLD, 16));
+//        JLabel answerLabelB = new JLabel("B");
+//        answerLabelB.setFont(new Font("Serif", Font.BOLD, 16));
+//        JLabel answerLabelC = new JLabel("C");
+//        answerLabelC.setFont(new Font("Serif", Font.BOLD, 16));
+//        JLabel answerLabelD = new JLabel("D");
+//        answerLabelD.setFont(new Font("Serif", Font.BOLD, 16));
         
 //        final JTextField idField = new JTextField(10);
 //        final JPasswordField passwordField = new JPasswordField(10);
 
-        JRadioButton assign1Btn = new JRadioButton("Check");
-        JRadioButton assign2Btn = new JRadioButton("Check");
-        JRadioButton assign3Btn = new JRadioButton("Check");
-        JRadioButton assign4Btn = new JRadioButton("Check");
-        JRadioButton assign5Btn = new JRadioButton("Check");
-        JRadioButton assign6Btn = new JRadioButton("Check");
-
-        ButtonGroup group1 = new ButtonGroup();
-        group1.add(assign1Btn);
-        group1.add(assign2Btn);
-        
-        ButtonGroup group2 = new ButtonGroup();
-        group2.add(assign3Btn);
-        group2.add(assign4Btn);
-        
-        ButtonGroup group3 = new ButtonGroup();
-        group3.add(assign5Btn);
-        group3.add(assign6Btn);
+//        JRadioButton radioBtnGroup1A = new JRadioButton();    //could swap the static text for an answer set supplied by the server
+//        JRadioButton radioBtnGroup1B = new JRadioButton();
+//        JRadioButton radioBtnGroup1C = new JRadioButton();
+//        JRadioButton radioBtnGroup1D = new JRadioButton();
+//        JRadioButton radioBtnGroup2A = new JRadioButton();
+//        JRadioButton radioBtnGroup2B = new JRadioButton();
+//        JRadioButton radioBtnGroup2C = new JRadioButton();
+//        JRadioButton radioBtnGroup2D = new JRadioButton();
+//        JRadioButton radioBtnGroup3A = new JRadioButton();
+//        JRadioButton radioBtnGroup3B = new JRadioButton();
+//        JRadioButton radioBtnGroup3C = new JRadioButton();
+//        JRadioButton radioBtnGroup3D = new JRadioButton();
+//
+//        ButtonGroup group1 = new ButtonGroup();
+//        group1.add(radioBtnGroup1A);
+//        group1.add(radioBtnGroup1B);
+//        group1.add(radioBtnGroup1C);
+//        group1.add(radioBtnGroup1D);
+//        
+//        ButtonGroup group2 = new ButtonGroup();
+//        group2.add(radioBtnGroup2A);
+//        group2.add(radioBtnGroup2B);
+//        group2.add(radioBtnGroup2C);
+//        group2.add(radioBtnGroup2D);
+//        
+//        ButtonGroup group3 = new ButtonGroup();
+//        group3.add(radioBtnGroup3A);
+//        group3.add(radioBtnGroup3B);
+//        group3.add(radioBtnGroup3C);
+//        group3.add(radioBtnGroup3D);
         
         JButton submitBtn = new JButton("Submit");
         
@@ -81,65 +136,103 @@ class AssessmentPanel extends JPanel {
         });
 
 
-        setLayout(new GridBagLayout());
-
-        GridBagConstraints gc = new GridBagConstraints();
+//        setLayout(new GridBagLayout());
+//
+//        GridBagConstraints gc = new GridBagConstraints();
 
         //// First Column /////////
 //        gc.anchor = GridBagConstraints.LINE_START;
 
-        gc.weightx = .5;
-        gc.weighty = .5;
-
-        gc.gridx = 0;
-        gc.gridy = 1;
-        add(ques1, gc);
-        
-        gc.gridx = 0;
-        gc.gridy = 2;
-        add(ques2, gc);
-
-        gc.gridx = 0;
-        gc.gridy = 3;
-        add(ques3, gc);
+//        gc.weightx = .5;
+//        gc.weighty = .5;
+//
+//        gc.gridx = 0;
+//        gc.gridy = 1;
+//        add(ques1, gc);
+//        
+//        gc.gridx = 0;
+//        gc.gridy = 2;
+//        add(ques2, gc);
+//
+//        gc.gridx = 0;
+//        gc.gridy = 3;
+//        add(ques3, gc);
 
         //// Second Column ////////
-        gc.anchor = GridBagConstraints.LINE_START;
-        
-        gc.gridx = 1;
-        gc.gridy = 0;
-        add(trueLabel, gc);
-        
-        gc.gridx = 1;
-        gc.gridy = 1;
-        add(assign1Btn, gc);
-
-        gc.gridx = 1;
-        gc.gridy = 2;
-        add(assign3Btn, gc);
-        
-        gc.gridx = 1;
-        gc.gridy = 3;
-        add(assign5Btn, gc);
-        
-        //// Third Column ////////
-        gc.anchor = GridBagConstraints.LINE_START;
-        
-        gc.gridx = 2;
-        gc.gridy = 0;
-        add(falseLabel, gc);
-        
-        gc.gridx = 2;
-        gc.gridy = 1;
-        add(assign2Btn, gc);
-
-        gc.gridx = 2;
-        gc.gridy = 2;
-        add(assign4Btn, gc);
-        
-        gc.gridx = 2;
-        gc.gridy = 3;
-        add(assign6Btn, gc);
+//        gc.anchor = GridBagConstraints.LINE_START;
+//        
+//        gc.gridx = 1;
+//        gc.gridy = 0;
+//        add(answerLabelA, gc);
+//        
+//        gc.gridx = 1;
+//        gc.gridy = 1;
+//        add(radioBtnGroup1A, gc);
+//
+//        gc.gridx = 1;
+//        gc.gridy = 2;
+//        add(radioBtnGroup2A, gc);
+//        
+//        gc.gridx = 1;
+//        gc.gridy = 3;
+//        add(radioBtnGroup3A, gc);
+//        
+//        //// Third Column ////////
+//        gc.anchor = GridBagConstraints.LINE_START;
+//        
+//        gc.gridx = 2;
+//        gc.gridy = 0;
+//        add(answerLabelB, gc);
+//        
+//        gc.gridx = 2;
+//        gc.gridy = 1;
+//        add(radioBtnGroup1B, gc);
+//
+//        gc.gridx = 2;
+//        gc.gridy = 2;
+//        add(radioBtnGroup2B, gc);
+//        
+//        gc.gridx = 2;
+//        gc.gridy = 3;
+//        add(radioBtnGroup3B, gc);
+//        
+//        //// Fourth Column ///////
+//        gc.anchor = GridBagConstraints.LINE_START;
+//        
+//        gc.gridx = 3;
+//        gc.gridy = 0;
+//        add(answerLabelC, gc);
+//        
+//        gc.gridx = 3;
+//        gc.gridy = 1;
+//        add(radioBtnGroup1C, gc);
+//        
+//        gc.gridx = 3;
+//        gc.gridy = 2;
+//        add(radioBtnGroup2C, gc);
+//        
+//        gc.gridx = 3;
+//        gc.gridy = 3;
+//        add(radioBtnGroup3C, gc);
+//        
+//        //// Fifth Column ///////
+//        gc.anchor = GridBagConstraints.LINE_START;
+//        
+//        gc.gridx = 4;
+//        gc.gridy = 0;
+//        add(answerLabelD, gc);
+//        
+//        gc.gridx = 4;
+//        gc.gridy = 1;
+//        add(radioBtnGroup1D, gc);
+//        
+//        gc.gridx = 4;
+//        gc.gridy = 2;
+//        add(radioBtnGroup2D, gc);
+//        
+//        gc.gridx = 4;
+//        gc.gridy = 3;
+//        add(radioBtnGroup3D, gc);
         
         //// Final Row /////////
 //        gc.weighty = 10;
