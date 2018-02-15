@@ -50,8 +50,8 @@ class AssignmnetPanel extends JPanel {
         ArrayList<String> assignStatusList = new ArrayList<String>(); //test start
         assignStatusList.add("Not Done");
         assignStatusList.add("Not Done");
-        assignStatusList.add("Done");
-        assignStatusList.add("Done");
+        assignStatusList.add("Not Done");
+        assignStatusList.add("Not Done");
         assignStatusList.add("Not Done");
         assignStatusList.add("Not Done");
         

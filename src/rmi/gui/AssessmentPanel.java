@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.event.EventListenerList;
@@ -48,6 +49,9 @@ class AssessmentPanel extends JPanel {
         GridBagConstraints gc = new GridBagConstraints();
         gc.weightx = .5;
         gc.weighty = .5;
+        
+        ArrayList<JRadioButton> groupList = new ArrayList();
+        
         for(int i=0; i < questionsList.size(); i++){
             JLabel ques1 = new JLabel(questionsList.get(i));
             gc.gridx = 0;
@@ -61,15 +65,18 @@ class AssessmentPanel extends JPanel {
             for(int j=0; j< answerList.size(); j++){
                 gc.gridx = j+1;
                 JRadioButton radioBtn = new JRadioButton(answerList.get(j));
+                
+                groupList.add(radioBtn);
+                
                 add(radioBtn, gc);
                 
                 //add radio button to group
                 group2.add(radioBtn);
             }
-            
+            //radioBtn.isSelected();
 
         }
-        
+        System.out.println(groupList);
         
 //        JLabel ques1 = new JLabel(questionsList.get(0));   //pass in the string 1 from the array
 //        JLabel ques2 = new JLabel(questionsList.get(1));
@@ -124,14 +131,11 @@ class AssessmentPanel extends JPanel {
         submitBtn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 System.out.println("you pressed the submit button");
+                
                 //get users questions by passing the user id and assignment number
                 
-//                ArrayList<String> questionsList = new ArrayList<String>(); //test start
-//                questionsList.add("Where do babys come from?");
-//                questionsList.add("What is the meaning of life?");
-//                questionsList.add("How long is a peice of string?");
-//                Assessment assessment = new Assessment(questionsList);
-                 // preform action here for assignmnet 1
+                JOptionPane.showMessageDialog(null, "Your submission has been logged");
+                System.exit(0);
             }
         });
 

@@ -1,11 +1,17 @@
 package rmi.gui;
 
+import ct414.AssessmentDetails;
+import ct414.ExamServer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
+
+import ct414.ExamServer;
 
 /**
  *
@@ -13,6 +19,7 @@ import javax.swing.event.EventListenerList;
  */
 public class DetailsPanel extends JPanel {
    private EventListenerList listener = new EventListenerList();
+   protected static String token;
    
    public DetailsPanel(){
        Dimension size = getPreferredSize();
@@ -38,9 +45,38 @@ public class DetailsPanel extends JPanel {
 
                 String text = id + ": " + password + "\n";
                 
-                // send password to relivent database and access the users account detials
-                //function call(complete, notComplete);
                 
+                // send password to relivent database and access the users account detials
+                try{
+                    token = RMIGui.server.login(id, password);
+                    System.out.println(token);
+                } catch (Exception badLogin){
+                    System.err.println("Access Denied");
+                    badLogin.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Access Denied");
+                    
+                    System.exit(0); //failed login will result in termination
+                }
+                
+                //put assingment info into ArrayList<String> and send to the constructor of IndividualAssignments
+//                RMIGui.server.getAvailableSummary(token);
+                
+                try {
+                    ArrayList<AssessmentDetails> details = (ArrayList) RMIGui.server.getAvailableSummary(DetailsPanel.token);
+                    System.out.println(details);
+                    
+                    // For all assessments:
+                        // Get ID and Info
+                        // Parse Info -> Display
+                        // Click on Assessment -> Use ID to make call to server.getAssessmentByID(token, ID)
+                    
+                } catch (Exception error) {
+                    System.err.println(error.getMessage());
+                }
+                
+
+
+
                 ArrayList<String> assignmentList = new ArrayList<String>(); //test start
                 assignmentList.add("CT402");
                 assignmentList.add("CT412");
