@@ -1,5 +1,6 @@
 package rmi.gui;
 
+import ct414.Assessment;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -7,6 +8,9 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,7 +28,6 @@ class AssignmnetPanel extends JPanel {
 
     public AssignmnetPanel(){
         
-        //edit all to produce the correct assignment listings
         Dimension size = getPreferredSize();
         size.width = 500;
         setPreferredSize(size);
@@ -39,32 +42,18 @@ class AssignmnetPanel extends JPanel {
         headingCol2.setFont(new Font("Serif", Font.BOLD, 20));
         headingCol3.setFont(new Font("Serif", Font.BOLD, 20));
         
-        //The following arrays should be returned by server ceck
-        ArrayList<String> assignList = new ArrayList<String>(); //test start
-        assignList.add("CT401");
-        assignList.add("CT402");
-        assignList.add("CT420");
-        assignList.add("CT401");
-        assignList.add("CT470");
-        assignList.add("CT496");
-        ArrayList<String> assignStatusList = new ArrayList<String>(); //test start
-        assignStatusList.add("Not Done");
-        assignStatusList.add("Not Done");
-        assignStatusList.add("Not Done");
-        assignStatusList.add("Not Done");
-        assignStatusList.add("Not Done");
-        assignStatusList.add("Not Done");
-        
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
         
-        for(int a=0; a < assignList.size(); a++){
+        ArrayList<JButton> buttonArray = new ArrayList();
+        
+        for(int a=0; a < RMIGui.assessmentTitles.size(); a++){   //issue occuring with the iteration~~~~ check what the size of this array is
             gc.anchor = GridBagConstraints.LINE_START;
             gc.weightx = .5;
             gc.weighty = .5;
             
-            JLabel assignLabel = new JLabel(assignList.get(a));
-            JLabel status = new JLabel(assignStatusList.get(a));
+            JLabel assignLabel = new JLabel(RMIGui.assessmentTitles.get(a));     //issue occuring here also... MORE HERE!!!
+            JLabel status = new JLabel("Not Done");
             JButton assignBtn = new JButton("Check");
             
             gc.gridx = 0;
@@ -76,24 +65,50 @@ class AssignmnetPanel extends JPanel {
             
             gc.gridx = 2;
             add(assignBtn, gc);
-        
+            
+            buttonArray.add(assignBtn);
         
             assignBtn.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    System.out.println("you pressed 1");
+                public void actionPerformed(java.awt.event.ActionEvent evt){
+                    System.out.println("you pressed: " + evt);
+                    
+                    //trying to set the id of a button to allow us to find the correct assignment for the button pressed (set a hidden id with the button to keep track)
+                    for(int b=0; b<buttonArray.size(); b++){
+                        if(evt.equals(buttonArray.get(b))){
+                            System.out.println("We got ignition!!!");
+                        }
+                    }
+                    
                     //get users questions by passing the user id and assignment number
-
-                    ArrayList<String> questionsList = new ArrayList<String>(); //test start
-                    questionsList.add("Where do babys come from?");
-                    questionsList.add("What is the meaning of life?");
-                    questionsList.add("How long is a peice of string?");
-                    Assessment assessment = new Assessment(questionsList);
-                    assessment.Assessment();
-                     // preform action here for assignmnet 1
+                    System.out.println("Assessment ID: "+ RMIGui.assessmentIDs.get(0)+".");
+                    try{
+                        Assessment a = (Assessment) RMIGui.server.getAssessmentByID(RMIGui.token, RMIGui.assessmentIDs.get(0));
+                        // Assessment a = (Assessment) RMIGui.server.getAssessmentByID(RMIGui.token, RMIGui.assessmentIDs.get(0));
+                        // System.out.println(a.getQuestion(0));
+                        
+                    }catch(Exception e){
+                        System.out.println("---" + e);
+                    }
+                   // ArrayList<String> questionsList = new ArrayList<String>(); //test start
+//                    questionsList.add("Where do babys come from?");
+//                    questionsList.add("What is the meaning of life?");
+//                    questionsList.add("How long is a peice of string?");
+                    // AssessmentForm assessment = new AssessmentForm(questionsList);
+                    // assessment.AssessmentForm();
+                     // preform action depending on the button pressed to find the relivent assignmnet
                 }
-            });        
+            });
+            // add to a preveously created button array
         }
-
+//        System.out.println("The buttonArray contains: "+ buttonArray);
+//        if(buttonArray.get(0)==buttonArray.get(1)){
+//            System.out.println("The buttons are the same");
+//        }
+//        if(buttonArray.get(0)==buttonArray.get(2)){
+//            System.out.println("The buttons are the same");
+//        }
+        //based on the position in the button assignmnet
+        
 //        JLabel assignLabel1 = new JLabel("-Assignment 1");
 //        JLabel assignLabel2 = new JLabel("-Assignment 2");
 //        JLabel assignLabel3 = new JLabel("-Assignment 3");
@@ -118,8 +133,8 @@ class AssignmnetPanel extends JPanel {
 //                questionsList.add("Where do babys come from?");
 //                questionsList.add("What is the meaning of life?");
 //                questionsList.add("How long is a peice of string?");
-//                Assessment assessment = new Assessment(questionsList);
-//                assessment.Assessment();
+//                AssessmentForm assessment = new AssessmentForm(questionsList);
+//                assessment.AssessmentForm();
 //                 // preform action here for assignmnet 1
 //            }
 //        });
@@ -132,8 +147,8 @@ class AssignmnetPanel extends JPanel {
 //                questionsList.add("Where do babys come from?");
 //                questionsList.add("What is the meaning of life?");
 //                questionsList.add("How long is a peice of string?");
-//                Assessment assessment = new Assessment(questionsList);
-//                assessment.Assessment();
+//                AssessmentForm assessment = new AssessmentForm(questionsList);
+//                assessment.AssessmentForm();
 //            }
 //        });
 //        assign3Btn.addActionListener(new ActionListener(){
@@ -145,8 +160,8 @@ class AssignmnetPanel extends JPanel {
 //                questionsList.add("Where do babys come from?");
 //                questionsList.add("What is the meaning of life?");
 //                questionsList.add("How long is a peice of string?");
-//                Assessment assessment = new Assessment(questionsList);
-//                assessment.Assessment();
+//                AssessmentForm assessment = new AssessmentForm(questionsList);
+//                assessment.AssessmentForm();
 //            }
 //        });
 

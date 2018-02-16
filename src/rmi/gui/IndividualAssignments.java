@@ -11,15 +11,15 @@ import javax.swing.SwingUtilities;
 public class IndividualAssignments {
 
     private String id;
-    private ArrayList currentUser = new ArrayList();
+    private ArrayList assignmentList = new ArrayList();
     
     IndividualAssignments(ArrayList<String> assignmentList, String id) {
-        this.currentUser = assignmentList;
+        this.assignmentList = assignmentList;
         this.id = id;
     }
     
     public void IndividualAssignments(){
-        System.out.println(currentUser);
+        System.out.println(assignmentList);
         
         JFrame assinmentFrame = new AssignmentFrame("Logged in as: "+id);   //change from MainFrame and create a new Frame class for assignments
         SwingUtilities.invokeLater(new Runnable(){

@@ -8,16 +8,16 @@ import javax.swing.SwingUtilities;
  *
  * @author rossdaly
  */
-class Assessment {
+class AssessmentForm {
     
     private ArrayList questions = new ArrayList();
     
-    Assessment(ArrayList<String> questionsList) {
+    AssessmentForm(ArrayList<String> questionsList) {
         this.questions = questionsList;
         System.out.println(questionsList);
     }
     
-    public void Assessment(){
+    public void AssessmentForm(){
         JFrame assessmentFrame = new AssessmentFrame("Assessment");   //change from MainFrame and create a new Frame class for assignments
         SwingUtilities.invokeLater(new Runnable(){
             public void run(){

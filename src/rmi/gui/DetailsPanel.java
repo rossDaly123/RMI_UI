@@ -20,6 +20,9 @@ import ct414.ExamServer;
 public class DetailsPanel extends JPanel {
    private EventListenerList listener = new EventListenerList();
    protected static String token;
+   protected static ArrayList<String> assessIDList = new ArrayList();
+   protected static ArrayList<String> titleList = new ArrayList();
+   protected static int roose = 7;
    
    public DetailsPanel(){
        Dimension size = getPreferredSize();
@@ -42,48 +45,48 @@ public class DetailsPanel extends JPanel {
            public void actionPerformed(ActionEvent e){
                 String id = idField.getText();
                 String password = passwordField.getText();
+                ArrayList<String> assessIDList = new ArrayList();
+                ArrayList<String> titleList = new ArrayList();
 
                 String text = id + ": " + password + "\n";
                 
                 
                 // send password to relivent database and access the users account detials
                 try{
-                    token = RMIGui.server.login(id, password);
+                    RMIGui.token = RMIGui.server.login(id, password);
+                    ArrayList<String> details = new ArrayList(RMIGui.server.getAvailableSummary(RMIGui.token));
+                    System.out.println(details.get(0));
+
+                    for(int i=0; i < details.size(); i++){
+                        String[] splitText = details.get(0).split("-");
+                        RMIGui.assessmentIDs.add(splitText[0]);
+                        RMIGui.assessmentTitles.add(splitText[1]);
+                    }
+                    
                     System.out.println(token);
+                    
+//                    titleList, assessIDList
+                    IndividualAssignments currentUser = new IndividualAssignments(titleList, id);
+                    currentUser.IndividualAssignments();
+                    
                 } catch (Exception badLogin){
                     System.err.println("Access Denied");
                     badLogin.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Access Denied");
-                    
                     System.exit(0); //failed login will result in termination
                 }
                 
                 //put assingment info into ArrayList<String> and send to the constructor of IndividualAssignments
 //                RMIGui.server.getAvailableSummary(token);
                 
-                try {
-                    ArrayList<AssessmentDetails> details = (ArrayList) RMIGui.server.getAvailableSummary(DetailsPanel.token);
-                    System.out.println(details);
-                    
-                    // For all assessments:
-                        // Get ID and Info
-                        // Parse Info -> Display
-                        // Click on Assessment -> Use ID to make call to server.getAssessmentByID(token, ID)
-                    
-                } catch (Exception error) {
-                    System.err.println(error.getMessage());
-                }
-                
-
-
 
                 ArrayList<String> assignmentList = new ArrayList<String>(); //test start
                 assignmentList.add("CT402");
                 assignmentList.add("CT412");
                 assignmentList.add("CT410");
                 assignmentList.add("CT420");
-                IndividualAssignments currentUser = new IndividualAssignments(assignmentList, id);
-                currentUser.IndividualAssignments();  //test end
+//                IndividualAssignments currentUser = new IndividualAssignments(assignmentList, id);
+//                currentUser.IndividualAssignments();  //test end
                 
                 fireDetailEvent(new DetailEvent(this, text));   //remove and replace with an exit of the login jframe
            }

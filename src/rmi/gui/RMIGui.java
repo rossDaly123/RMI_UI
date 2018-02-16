@@ -8,11 +8,14 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import ct414.ExamServer;
+import java.util.ArrayList;
 
 public class RMIGui {
-    JFrame frame;
-    
     protected static ExamServer server;
+    protected static String token;
+    protected static ArrayList<String> assessmentIDs;
+    protected static ArrayList<String> assessmentTitles;
+    
     
     public static void main(String[] args) {
         if (System.getSecurityManager() == null) {
@@ -21,6 +24,8 @@ public class RMIGui {
         try {
             Registry registry = LocateRegistry.getRegistry("159.65.23.223", 1099);
             server = (ExamServer) registry.lookup("ExamServer");
+            assessmentIDs = new ArrayList<String>();
+            assessmentTitles = new ArrayList<String>();
             
             JFrame frame = new LoginFrame("Student Login");
             
@@ -36,10 +41,5 @@ public class RMIGui {
         e.printStackTrace();
         }
         
-    }
-    
-    public void setLoginInvisible(){
-        frame.setVisible(false);
-    }
-    
+    }    
 }
