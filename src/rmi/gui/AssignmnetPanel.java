@@ -65,16 +65,12 @@ class AssignmnetPanel extends JPanel {
             assignBtn.addActionListener(new ActionListener(){
                 public void actionPerformed(java.awt.event.ActionEvent evt){
                     try{
-                    		System.out.println(assignBtn.getClientProperty("ID").toString());
+                        System.out.println(assignBtn.getClientProperty("ID").toString());
                         RMIGui.workingAssessment = (Assessment) RMIGui.server.getAssessmentByID(RMIGui.token, assignBtn.getClientProperty("ID").toString());
                         JFrame assessmentFrame = new AssessmentFrame(RMIGui.workingAssessment.getInformation());   //change from MainFrame and create a new Frame class for assignments
-                        SwingUtilities.invokeLater(new Runnable(){
-                            public void run(){
-                            	assessmentFrame.setSize(500,250);
-                            	assessmentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                            	assessmentFrame.setVisible(true);
-                            }
-                        });
+                        //replace with
+                        AssessmentForm assess = new AssessmentForm(RMIGui.workingAssessment.getQuestions().size()); 
+                        assess.AssessmentForm();
                     }catch(Exception e){
                         System.out.println("---" + e);
                     }

@@ -16,7 +16,7 @@ public class IndividualAssignments {
         JFrame assinmentFrame = new AssignmentFrame("Logged in as: "+id);   //change from MainFrame and create a new Frame class for assignments
         SwingUtilities.invokeLater(new Runnable(){
             public void run(){
-                assinmentFrame.setSize(500,250);
+                assinmentFrame.setSize(500,60*RMIGui.assessmentIDs.size());
                 assinmentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 assinmentFrame.setVisible(true);
             }

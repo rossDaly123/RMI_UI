@@ -10,18 +10,17 @@ import javax.swing.SwingUtilities;
  */
 class AssessmentForm {
     
-    private ArrayList questions = new ArrayList();
+    private int numQuestions;
     
-    AssessmentForm(ArrayList<String> questionsList) {
-        this.questions = questionsList;
-        System.out.println(questionsList);
+    AssessmentForm(int numQuestions) {
+        this.numQuestions = numQuestions;
     }
     
     public void AssessmentForm(){
         JFrame assessmentFrame = new AssessmentFrame("Assessment");   //change from MainFrame and create a new Frame class for assignments
         SwingUtilities.invokeLater(new Runnable(){
             public void run(){
-                assessmentFrame.setSize(500,250);
+                assessmentFrame.setSize(1200,100*numQuestions);
                 assessmentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 assessmentFrame.setVisible(true);
             }

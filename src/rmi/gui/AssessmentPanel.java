@@ -34,7 +34,7 @@ class AssessmentPanel extends JPanel {
     public AssessmentPanel(){
         //edit all to produce the correct assignment listings
         Dimension size = getPreferredSize();
-        size.width = 500;
+        size.width = 1200;
         setPreferredSize(size);
         setBorder(BorderFactory.createTitledBorder(RMIGui.workingAssessment.getInformation()));
         ArrayList<Question> questions = new ArrayList<Question>(RMIGui.workingAssessment.getQuestions());      
@@ -49,7 +49,6 @@ class AssessmentPanel extends JPanel {
             add(ques1, gc);
             ButtonGroup group = new ButtonGroup();     //create radio group for this question
             gc.anchor = GridBagConstraints.LINE_START;
-            gc.gridy = i+1;
             for(int j=0; j< questions.get(i).getAnswerOptions().length; j++){
                 gc.gridx = j+1;
                 JRadioButton radioBtn = new JRadioButton(questions.get(i).getAnswerOptions()[j]);
