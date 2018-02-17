@@ -59,7 +59,7 @@ class AssessmentPanel extends JPanel {
                 		public void actionPerformed(ActionEvent e){
                 			if(radioBtn.isSelected()) {
                 				try {
-									RMIGui.workingAssessment.selectAnswer(questionIndex, answerIndex);
+                					RMIGui.workingAssessment.selectAnswer(questionIndex, answerIndex);
 								} catch (InvalidQuestionNumber e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
@@ -79,7 +79,9 @@ class AssessmentPanel extends JPanel {
         submitBtn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 try {
-					RMIGui.server.submitAssessment(RMIGui.token, (Assessment) RMIGui.workingAssessment);
+					String marks = RMIGui.server.submitAssessment(RMIGui.token, (Assessment) RMIGui.workingAssessment);
+					JOptionPane.showMessageDialog(null, "Score - " + marks + "%");
+                    System.exit(0);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
