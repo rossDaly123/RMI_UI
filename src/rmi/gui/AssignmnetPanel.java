@@ -1,30 +1,28 @@
 package rmi.gui;
 
 import ct414.Assessment;
+import ct414.Question;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.event.EventListenerList;
+import javax.swing.SwingUtilities;
+
 
 /**
  *
  * @author rossdaly
  */
 class AssignmnetPanel extends JPanel {
-    private EventListenerList listener = new EventListenerList();
+
+	private static final long serialVersionUID = -9093164680410163007L;
 
     public AssignmnetPanel(){
         
@@ -69,6 +67,14 @@ class AssignmnetPanel extends JPanel {
                     try{
                     		System.out.println(assignBtn.getClientProperty("ID").toString());
                         RMIGui.workingAssessment = (Assessment) RMIGui.server.getAssessmentByID(RMIGui.token, assignBtn.getClientProperty("ID").toString());
+                        JFrame assessmentFrame = new AssessmentFrame(RMIGui.workingAssessment.getInformation());   //change from MainFrame and create a new Frame class for assignments
+                        SwingUtilities.invokeLater(new Runnable(){
+                            public void run(){
+                            	assessmentFrame.setSize(500,250);
+                            	assessmentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            	assessmentFrame.setVisible(true);
+                            }
+                        });
                     }catch(Exception e){
                         System.out.println("---" + e);
                     }
@@ -105,9 +111,7 @@ class AssignmnetPanel extends JPanel {
         
         gc.gridx = 3;
         gc.gridy = 0;
-        add(headingCol4, gc);
-        
-          
+        add(headingCol4, gc);        
    }
 
 }

@@ -2,11 +2,8 @@ package rmi.gui;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-
 import ct414.Assessment;
 import ct414.ExamServer;
 import java.util.ArrayList;
@@ -28,15 +25,12 @@ public class RMIGui {
         try {
             Registry registry = LocateRegistry.getRegistry("159.65.23.223", 1099);
             server = (ExamServer) registry.lookup("ExamServer");
-            assessmentIDs = new ArrayList<String>();
-            
+            assessmentIDs = new ArrayList<String>(); 
             assessmentTitles = new ArrayList<String>();
             assessmentMarks = new ArrayList<String>();
             assessmentStatuses = new ArrayList<String>();
             workingAssessment = null;
-            
-            JFrame frame = new LoginFrame("Student Login");
-            
+            JFrame frame = new LoginFrame("Student Login");          
             SwingUtilities.invokeLater(new Runnable(){
             public void run(){
                 frame.setSize(300,150);
@@ -48,6 +42,5 @@ public class RMIGui {
         System.err.println("Didnt Work!");
         e.printStackTrace();
         }
-        
     }    
 }

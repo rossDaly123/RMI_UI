@@ -2,13 +2,11 @@ package rmi.gui;
 
 import java.awt.*;
 import javax.swing.*;
-/**
- *
- * @author rossdaly
- */
+
 public class LoginFrame extends JFrame {
-    
-    private DetailsPanel detailsPanel;
+
+	private static final long serialVersionUID = -2485840487267507963L;
+	private DetailsPanel detailsPanel;
     
     public LoginFrame(String title){
         super(title);
