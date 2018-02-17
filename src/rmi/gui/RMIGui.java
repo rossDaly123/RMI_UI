@@ -7,6 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import ct414.Assessment;
 import ct414.ExamServer;
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class RMIGui {
     protected static ArrayList<String> assessmentTitles;
     protected static ArrayList<String> assessmentMarks;
     protected static ArrayList<String> assessmentStatuses;
+    protected static Assessment workingAssessment;
     
     
     public static void main(String[] args) {
@@ -31,6 +33,7 @@ public class RMIGui {
             assessmentTitles = new ArrayList<String>();
             assessmentMarks = new ArrayList<String>();
             assessmentStatuses = new ArrayList<String>();
+            workingAssessment = null;
             
             JFrame frame = new LoginFrame("Student Login");
             

@@ -51,7 +51,6 @@ public class DetailsPanel extends JPanel {
 	                     RMIGui.assessmentMarks.add(splitText[2]);
 	                     RMIGui.assessmentTitles.add(splitText[3]);
                     }
-
                     IndividualAssignments currentUser = new IndividualAssignments(titleList, id);
                     currentUser.IndividualAssignments();
                     
