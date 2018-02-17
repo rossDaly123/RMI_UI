@@ -31,29 +31,27 @@ class AssignmnetPanel extends JPanel {
         Dimension size = getPreferredSize();
         size.width = 500;
         setPreferredSize(size);
-
-
         setBorder(BorderFactory.createTitledBorder("Assignment List"));
-
         JLabel headingCol1 = new JLabel("Assignment");
         JLabel headingCol2 = new JLabel("Status");
-        JLabel headingCol3 = new JLabel("Access");
+        JLabel headingCol3 = new JLabel("Score");
+        JLabel headingCol4 = new JLabel("Access");
         headingCol1.setFont(new Font("Serif", Font.BOLD, 20));
         headingCol2.setFont(new Font("Serif", Font.BOLD, 20));
         headingCol3.setFont(new Font("Serif", Font.BOLD, 20));
-        
+        headingCol4.setFont(new Font("Serif", Font.BOLD, 20));
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
+        ArrayList<JButton> buttonArray = new ArrayList<JButton>();
         
-        ArrayList<JButton> buttonArray = new ArrayList();
-        
-        for(int a=0; a < RMIGui.assessmentTitles.size(); a++){   //issue occuring with the iteration~~~~ check what the size of this array is
+        for(int a=0; a < RMIGui.assessmentTitles.size(); a++){
             gc.anchor = GridBagConstraints.LINE_START;
             gc.weightx = .5;
             gc.weighty = .5;
             
-            JLabel assignLabel = new JLabel(RMIGui.assessmentTitles.get(a));     //issue occuring here also... MORE HERE!!!
-            JLabel status = new JLabel("Not Done");
+            JLabel assignLabel = new JLabel(RMIGui.assessmentTitles.get(a));
+            JLabel status = new JLabel(RMIGui.assessmentStatuses.get(a));
+            JLabel marks = new JLabel(RMIGui.assessmentMarks.get(a));
             JButton assignBtn = new JButton("Check");
             
             gc.gridx = 0;
@@ -64,6 +62,9 @@ class AssignmnetPanel extends JPanel {
             add(status, gc);
             
             gc.gridx = 2;
+            add(marks, gc);
+            
+            gc.gridx = 3;
             add(assignBtn, gc);
             
             buttonArray.add(assignBtn);

@@ -1,6 +1,5 @@
 package rmi.gui;
 
-import ct414.AssessmentDetails;
 import ct414.ExamServer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -28,44 +27,31 @@ public class DetailsPanel extends JPanel {
        Dimension size = getPreferredSize();
        size.width = 300;
        setPreferredSize(size);
-       
-       
        setBorder(BorderFactory.createTitledBorder("Personal Details"));
-       
-       
        JLabel idLabel = new JLabel("Student ID: ");
        JLabel passwordLabel = new JLabel("Password: ");
-       
        final JTextField idField = new JTextField(10);
        final JPasswordField passwordField = new JPasswordField(10);
-       
        JButton addBtn = new JButton("Submit");
-       
        addBtn.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
                 String id = idField.getText();
                 String password = passwordField.getText();
                 ArrayList<String> assessIDList = new ArrayList();
                 ArrayList<String> titleList = new ArrayList();
-
                 String text = id + ": " + password + "\n";
-                
-                
                 // send password to relivent database and access the users account detials
                 try{
                     RMIGui.token = RMIGui.server.login(id, password);
-                    ArrayList<String> details = new ArrayList(RMIGui.server.getAvailableSummary(RMIGui.token));
-                    System.out.println(details.get(0));
-
+                    ArrayList<String> details = new ArrayList<String>(RMIGui.server.getAvailableSummary(RMIGui.token));
                     for(int i=0; i < details.size(); i++){
-                        String[] splitText = details.get(0).split("-");
-                        RMIGui.assessmentIDs.add(splitText[0]);
-                        RMIGui.assessmentTitles.add(splitText[1]);
+	                     String[] splitText = details.get(i).split("-");
+	                     RMIGui.assessmentIDs.add(splitText[0]);
+	                     RMIGui.assessmentStatuses.add(splitText[1]);
+	                     RMIGui.assessmentMarks.add(splitText[2]);
+	                     RMIGui.assessmentTitles.add(splitText[3]);
                     }
-                    
-                    System.out.println(token);
-                    
-//                    titleList, assessIDList
+
                     IndividualAssignments currentUser = new IndividualAssignments(titleList, id);
                     currentUser.IndividualAssignments();
                     
